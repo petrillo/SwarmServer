@@ -2,10 +2,12 @@ buildscript {
     repositories {
         mavenCentral()
     }
+
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE")
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE')
         classpath('io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE')
     }
+    
 }
 
 apply plugin: 'java'
@@ -27,17 +29,11 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    // tag::jetty[]
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
     compile("org.springframework.boot:spring-boot-starter-jetty")
-    // end::jetty[]
-    // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
-    // end::actuator[]
-    testCompile("junit:junit")
-
     compile("org.springframework.boot:spring-boot-starter-test")
     
     compile("com.google.code.gson:gson:2.4")
@@ -45,8 +41,10 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     
-    compile("org.postgresql:postgresql:9.3-1104-jdbc41") 
-       
+    compile("org.postgresql:postgresql:9.3-1104-jdbc41")
+    
+    testCompile("junit:junit")
+    testCompile("com.jayway.jsonpath:json-path:2.0.0")
 }
 
 task wrapper(type: Wrapper) {
