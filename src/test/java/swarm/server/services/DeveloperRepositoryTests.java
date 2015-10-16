@@ -15,11 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import swarm.server.Application;
 import swarm.server.domains.Developer;
 
-/**
- * Integration tests for {@link CityRepository}.
- *
- * @author Oliver Gierke
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 public class DeveloperRepositoryTests {
@@ -28,8 +23,7 @@ public class DeveloperRepositoryTests {
 	DeveloperRepository repository;
 
 	@Test
-	public void findsFirstPageOfCities() {
-
+	public void findsFirstPageOfDevelopers() {
 		Page<Developer> developers = this.repository.findAll(new PageRequest(0, 10));
 		assertThat(developers.getTotalElements(), is(greaterThan(1L)));
 	}
