@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import swarm.server.domains.Developer;
 
 @RepositoryRestResource(collectionResourceRel = "developers", path = "developers")
-interface DeveloperRepository extends PagingAndSortingRepository<Developer, Long> {
+public interface DeveloperRepository extends PagingAndSortingRepository<Developer, Long> {
 
 	Page<Developer> findByName(@Param("name") String name, Pageable pageable);
 	
