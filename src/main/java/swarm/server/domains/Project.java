@@ -9,31 +9,21 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
-public class Developer implements Serializable {
-
-	private static final long serialVersionUID = -8377345229493337082L;
-
+public class Project implements Serializable {
+	private static final long serialVersionUID = 5471887306464491390L;
 	@Id
 	@GeneratedValue
-	private Long id;	
-	
+	private Long id;
+
 	@Column(nullable = false)
 	String name;
+	
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "developer")	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")	
 	private List<Session> sessions;
-	
-	@Transient
-	boolean logged;
 
-	
-	public Long getId() {
-		return this.id;
-	}
-	
 	public String getName() {
 		return name;
 	}
@@ -42,20 +32,6 @@ public class Developer implements Serializable {
 		this.name = name;
 	}
 
-	public List<Session> getSessions() 
-	{ 
-		return this.sessions; 
-	}
-	
-	
-	public boolean isLogged() {
-		return this.logged;
-	}
-
-	public void setLogged(boolean logged) {
-		this.logged = logged;
-	}	
-	
 	public String toString() {
 		return id + ": " + name;
 	}
