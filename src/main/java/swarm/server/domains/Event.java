@@ -1,0 +1,122 @@
+package swarm.server.domains;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+public class Event implements Serializable {
+	private static final long serialVersionUID = 4778378924903070737L;
+
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	@ManyToOne(optional = false)
+	private Method method;
+
+	@ManyToOne(optional = false)
+	private Session session;
+
+	@Column(nullable = false)
+	String version;
+
+	@Column(nullable = false)
+	String charStart;
+
+	@Column(nullable = false)
+	String charEnd;
+
+	@Column(nullable = false)
+	Integer lineNumber;
+
+	@Column(nullable = false)
+	String detail;
+
+	@Column(nullable = false)
+	String kind;
+
+	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date dateCreated;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Method getMethod() {
+		return method;
+	}
+
+	public void setMethod(Method method) {
+		this.method = method;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
+	public String getCharStart() {
+		return charStart;
+	}
+
+	public void setCharStart(String charStart) {
+		this.charStart = charStart;
+	}
+
+	public String getCharEnd() {
+		return charEnd;
+	}
+
+	public void setCharEnd(String charEnd) {
+		this.charEnd = charEnd;
+	}
+
+	public Integer getLineNumber() {
+		return lineNumber;
+	}
+
+	public void setLineNumber(Integer lineNumber) {
+		this.lineNumber = lineNumber;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+}
