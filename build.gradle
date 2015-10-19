@@ -47,6 +47,8 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-devtools")
 
+    compile("commons-dbcp:commons-dbcp")
+    
     compile("org.postgresql:postgresql:9.3-1104-jdbc41") 
     compile("com.google.code.gson:gson:2.4")
 
