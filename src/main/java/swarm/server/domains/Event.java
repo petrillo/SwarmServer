@@ -1,15 +1,12 @@
 package swarm.server.domains;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Event implements Serializable {
@@ -26,9 +23,6 @@ public class Event implements Serializable {
 	private Session session;
 
 	@Column(nullable = false)
-	String version;
-
-	@Column(nullable = false)
 	String charStart;
 
 	@Column(nullable = false)
@@ -42,10 +36,6 @@ public class Event implements Serializable {
 
 	@Column(nullable = false)
 	String kind;
-
-	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
-	private Date dateCreated;
 
 	public Long getId() {
 		return id;
@@ -110,13 +100,4 @@ public class Event implements Serializable {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
 }

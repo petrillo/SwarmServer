@@ -1,15 +1,12 @@
 package swarm.server.domains;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Type implements Serializable {
@@ -25,16 +22,6 @@ public class Type implements Serializable {
 	@ManyToOne(optional = false)
 	private Session session;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "type")	
-	private List<Method> methods;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "type")	
-	private List<Breakpoint> breakpoints;
-
-
-	@Column(nullable = false)
-	String version;
-
 	@Column(nullable = false)
 	String fullName;
 	
@@ -44,7 +31,7 @@ public class Type implements Serializable {
 	@Column(nullable = false)
 	String name;
 	
-	@Column(nullable = false)
+	@Column(length = 1000000)
 	String source;
 
 	public Long getId() {

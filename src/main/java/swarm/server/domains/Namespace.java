@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Namespace implements Serializable {
@@ -22,9 +21,6 @@ public class Namespace implements Serializable {
 	@Column(nullable = false)
 	String fullPath;
 	
-	@ManyToOne(optional = false)
-	private Type type;
-
 	public String getName() {
 		return name;
 	}
@@ -48,13 +44,4 @@ public class Namespace implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
 }

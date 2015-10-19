@@ -1,15 +1,12 @@
 package swarm.server.domains;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Method implements Serializable {
@@ -30,10 +27,6 @@ public class Method implements Serializable {
 
 	@Column(nullable = false)
 	String signature;
-	
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "method")	
-	private List<Event> events;
 
 	public Long getId() {
 		return id;
@@ -73,13 +66,5 @@ public class Method implements Serializable {
 
 	public void setType(Type type) {
 		this.type = type;
-	}
-
-	public List<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
 	}
 }

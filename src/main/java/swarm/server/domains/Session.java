@@ -3,7 +3,6 @@ package swarm.server.domains;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,30 +17,22 @@ public class Session implements Serializable {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Developer developer;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Project project;
 	
-	@Column(nullable = false)
-	String version;	
-	
-	@Column(nullable = false)
 	String description;	
-	
-	@Column(nullable = false)
+
 	String label;	
 	
-	@Column(nullable = false)
 	String purpose;
 	
-	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date started;
 	
-	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date finished;
 
 	public Developer getDeveloper() {
@@ -58,14 +49,6 @@ public class Session implements Serializable {
 
 	public void setProject(Project project) {
 		this.project = project;
-	}
-
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
 	}
 
 	public String getDescription() {

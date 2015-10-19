@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import swarm.server.services.DeveloperService;
+import swarm.server.services.MethodService;
 
 @RestController
-public class DeveloperRestController {
+public class MethodRestController {
 
 	@Autowired
-	private DeveloperService  service; 
+	private MethodService  service; 
 
-	@RequestMapping("/login")
-    public String login(String name) {
-		return service.login(name);
+	@RequestMapping("methods/getByTypeId")
+    public String getByTypeId(Long typeId) {
+		return service.getByTypeId(typeId);
     }
 }
