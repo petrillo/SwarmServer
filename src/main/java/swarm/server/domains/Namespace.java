@@ -21,6 +21,14 @@ public class Namespace implements Serializable {
 	@Column(nullable = false)
 	String fullPath;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}	
+
 	public String getName() {
 		return name;
 	}
@@ -35,13 +43,5 @@ public class Namespace implements Serializable {
 
 	public void setFullPath(String fullPath) {
 		this.fullPath = fullPath;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 }

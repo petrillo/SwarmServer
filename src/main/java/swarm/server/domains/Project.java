@@ -11,14 +11,12 @@ import javax.persistence.Id;
 public class Project implements Serializable {
 
 	private static final long serialVersionUID = 5471887306464491390L;
-	
 	@Id
 	@GeneratedValue
 	private Long id;
 
 	@Column(nullable = false)
 	String name;
-	
 	
 	public Long getId() {
 		return id;

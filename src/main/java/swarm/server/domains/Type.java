@@ -21,7 +21,7 @@ public class Type implements Serializable {
 	
 	@ManyToOne(optional = false)
 	private Session session;
-	
+
 	@Column(nullable = false)
 	String fullName;
 	

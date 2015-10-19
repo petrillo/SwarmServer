@@ -9,6 +9,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import swarm.server.domains.Project;
 
+
 @RepositoryRestResource(collectionResourceRel = "projects", path = "projects")
 public interface ProjectRepository extends PagingAndSortingRepository<Project, Long> {
 	Project findByName(@Param("name") String name);

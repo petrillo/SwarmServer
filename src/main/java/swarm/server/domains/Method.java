@@ -59,12 +59,4 @@ public class Method implements Serializable {
 	public void setSignature(String signature) {
 		this.signature = signature;
 	}
-	
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
 }
