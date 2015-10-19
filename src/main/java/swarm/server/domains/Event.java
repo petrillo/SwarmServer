@@ -2,7 +2,6 @@ package swarm.server.domains;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,19 +21,14 @@ public class Event implements Serializable {
 	@ManyToOne(optional = false)
 	private Session session;
 
-	@Column(nullable = false)
 	String charStart;
 
-	@Column(nullable = false)
 	String charEnd;
 
-	@Column(nullable = false)
 	Integer lineNumber;
 
-	@Column(nullable = false)
 	String detail;
 
-	@Column(nullable = false)
 	String kind;
 
 	public Long getId() {

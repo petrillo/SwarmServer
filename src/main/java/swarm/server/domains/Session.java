@@ -12,7 +12,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Session implements Serializable {
+
 	private static final long serialVersionUID = -1945528119276270987L;
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -34,6 +36,14 @@ public class Session implements Serializable {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date finished;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Developer getDeveloper() {
 		return developer;

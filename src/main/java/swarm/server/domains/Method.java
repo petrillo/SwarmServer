@@ -36,6 +36,14 @@ public class Method implements Serializable {
 		this.id = id;
 	}
 
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
 	public String getKey() {
 		return key;
 	}
