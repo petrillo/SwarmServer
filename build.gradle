@@ -44,16 +44,19 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-test")
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
     compile("org.springframework.boot:spring-boot-devtools")
 
     compile("commons-dbcp:commons-dbcp")
-    
-    compile("org.postgresql:postgresql:9.3-1104-jdbc41") 
     compile("com.google.code.gson:gson:2.4")
-
+    
+    testCompile('org.springframework.boot:spring-boot-starter-test')     
     testCompile("junit:junit")
     testCompile("com.jayway.jsonpath:json-path:2.0.0")
+    
+    runtime('org.postgresql:postgresql:9.3-1104-jdbc41')
+    
 }
 
 

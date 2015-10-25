@@ -1,4 +1,4 @@
-package swarm.server.controllers;
+package swarm.server.services;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
