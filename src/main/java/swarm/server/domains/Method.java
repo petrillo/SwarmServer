@@ -67,4 +67,8 @@ public class Method implements Serializable {
 	public void setSignature(String signature) {
 		this.signature = signature;
 	}
+	
+	public String toString() {
+		return type.getFullName() +"." +  this.name;
+	}
 }

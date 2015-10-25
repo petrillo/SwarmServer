@@ -24,6 +24,14 @@ public class Invocation implements Serializable {
 	@ManyToOne(optional = false)
 	private Session session;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Method getInvoking() {
 		return invoking;
 	}
@@ -46,6 +54,10 @@ public class Invocation implements Serializable {
 
 	public void setSession(Session session) {
 		this.session = session;
+	}
+	
+	public String toString() {
+		return invoking.getId() + ": " + invoking.getKey() + " -> " + invoked.getId() + ": " + invoked.getKey();
 	}
 
 }
