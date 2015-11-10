@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Invocation implements Serializable {
@@ -23,7 +24,10 @@ public class Invocation implements Serializable {
 
 	@ManyToOne(optional = false)
 	private Session session;
-
+	
+	@Transient
+	private boolean isVitual;
+	
 	public Long getId() {
 		return id;
 	}
@@ -59,5 +63,13 @@ public class Invocation implements Serializable {
 	public String toString() {
 		return invoking.getId() + ": " + invoking.getKey() + " -> " + invoked.getId() + ": " + invoked.getKey();
 	}
-
+	
+	public boolean isVirtual() {
+		return this.isVitual;
+	}
+	
+	public void setVirtual(boolean virtual) {
+		this.isVitual = virtual;
+	}
+	
 }

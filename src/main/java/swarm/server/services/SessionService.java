@@ -69,7 +69,7 @@ public class SessionService {
 						}
 						
 						graph.append("{ \"group\": \"nodes\", ");
-						graph.append("\"data\": { \"id\": \"M" + method.getId() + "\", \"label\": \"" + type.getName() + "." + method.getName() + "\", ");
+						graph.append("\"data\": { \"id\": \"M" + method.getId() + "\", \"label\": \"" + type.getName() + ". " + method.getName() + "\", ");
 						graph.append("\"color\": \"" + String.format("#%02x%02x%02x", r, g, b) + "\"");
 						
 						if(addType) {
@@ -100,7 +100,10 @@ public class SessionService {
 						graph.append("{ \"group\": \"edges\", ");
 						graph.append("\"data\":{ \"id\": \"I" + invocation.getId() + "\", " );
 						graph.append("\"source\": " + "\"M" + invocation.getInvoking().getId() + "\", ");
-						graph.append("\"target\": " + "\"M" + invocation.getInvoked().getId() + "\", \"label\": \"[" + (label.length() > 30 ? "*": label)   + "]\" }},");
+						graph.append("\"target\": " + "\"M" + invocation.getInvoked().getId() + "\", ");
+						graph.append("\"line-color\": " + "\"light-gray" + "\", ");
+						graph.append("\"target-arrow-color\": " + "\"light-gray" + "\", ");
+				        graph.append("\"label\": \"[" + (label.length() > 30 ? "*": label)   + "]\" }},");
 						labels.remove(key);
 					}
 				}
@@ -128,8 +131,8 @@ public class SessionService {
 		List<List<Invocation>> paths = getInvocationPaths(startingMethods, endingMethods,session);
 		for (List<Invocation> path : paths) {
 			for (Invocation invocation : path) {
-				graph.append(addNode(pathIndex,invocation.getInvoking()));
-				graph.append(addNode(pathIndex,invocation.getInvoked()));
+				graph.append(addNode(pathIndex,invocation.getInvoking(), invocation.isVirtual()));
+				graph.append(addNode(pathIndex,invocation.getInvoked(), false));
 				graph.append(addEdge(pathIndex,invocation));
 			}
 			pathIndex++;
@@ -153,12 +156,14 @@ public class SessionService {
 		buffer.append("\"data\": { \"id\": \"P" + path + "-I" + invocation.getId() + "\", " );
 		buffer.append("\"source\": \"P" + path + "-M" + invocation.getInvoking().getId() + "\", ");
 		buffer.append("\"target\": \"P" + path + "-M" + invocation.getInvoked().getId() + "\" , \"label\" : " + invocation.getId() + ", ");
+		buffer.append("\"linecolor\": "  + (invocation.isVirtual() ? "\"lightgray" : "\"black")  + "\", ");
+
 		buffer.append("\"style\": \"solid\"}},");
 		//buffer.append("\"style\": \"solid\"}},<p>");
 		return buffer.toString();
 	}
 	
-	private String addNode(int path, Method method) {
+	private String addNode(int path, Method method, boolean isVirtual) {
 		StringBuffer buffer = new StringBuffer();
 		int hash = method.getType().getFullName().hashCode();
 		//int hash = method.key.hashCode()
@@ -167,7 +172,8 @@ public class SessionService {
 		int b = hash & 0x0000FF;
 		
 		buffer.append("{ \"group\": \"nodes\", ");
-		buffer.append("\"data\": { \"id\": \"P" + path + "-M" + method.getId() + "\", \"label\": \"" + method.getType().getName() + "." + method.getName() + "\", ");
+		buffer.append("\"data\": { \"id\": \"P" + path + "-M" + method.getId() + "\", \"label\": \"" + method.getType().getName() + " " + method.getName() + "()\", ");
+		buffer.append("\"opacity\": \"" + (isVirtual ? 0.2 : 1) + "\", ");
 		buffer.append("\"color\": \"" + String.format("#%02x%02x%02x", r, g, b) + "\"");
 		
 		buffer.append("}},");
@@ -213,6 +219,7 @@ public class SessionService {
 				graph.append("\"data\":{ \"id\": \"IP-" + pathIndex1 +"->"+pathIndex2+ "-I" + connectedInvocation.getId() + "\", " );
 				graph.append("\"source\": \"P" + pathIndex1 + "-M" + connectedInvocation.getInvoked().getId() + "\", ");
 				graph.append("\"target\": \"P" + pathIndex2 + "-M" + connectedInvocation.getInvoked().getId() + "\" , \"label\" : \"" + connectedInvocation.getId() + "\", ");
+				graph.append("\"linecolor\": "  + "\"black" + "\", ");
 				graph.append("\"style\": \"dotted\"}},");
 				//graph.append("\"style\": \"dotted\"}},<p>");
 			}
@@ -252,7 +259,9 @@ public class SessionService {
 		
 		Invocation prevInvocation = null;
 		List<Invocation> pathInvocations = new ArrayList<Invocation>(); 
-		List<Invocation> stack = new ArrayList<Invocation>(); 
+		List<Invocation> stack = new ArrayList<Invocation>();
+		boolean firstStack = true;
+		
 		for (Invocation invocation : uniqueInvocations) {
 			if(startingMethods.contains(invocation.getInvoking())) {
 				stack = new ArrayList<Invocation>();
@@ -269,7 +278,15 @@ public class SessionService {
 				}
 
 				stack.subList(i,stack.size()).clear();
-								
+				
+				if(!firstStack) {
+					for (Invocation item : stack) {
+						item.setVirtual(true);
+					}
+				} else {
+					firstStack = false;
+				}
+				
 				pathInvocations = new ArrayList<Invocation>(stack);
 
 			}

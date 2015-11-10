@@ -23,8 +23,7 @@ var tappedMethod;
 var sequence = [];
 var sIndex = -1;
 
-var sessionId = location.search.split('sessionId=')[1]
-
+var sessionId = location.search.split('sessionId=')[1];
 
 $(function(){ // on dom ready
 
@@ -34,6 +33,8 @@ cy = cytoscape({
   container: document.getElementById('cy'),
   layout: {
 		name: 'dagre',
+		rankDir: 'LR',
+		fit: true,
 		padding: 10
 	  },
   style: cytoscape.stylesheet()
@@ -41,12 +42,23 @@ cy = cytoscape({
     .css({
   	  'shape': 'circle',
       'font-size': 3,
+      'border-color': 'black',
+      'border-width': .5,
+      'border-opacity': 'data(opacity)',      
       'background-color': 'data(color)',
+      //'background-color': 'white',
       'content': 'data(label)',
-      'text-valign': 'center',
-      'color': 'white',
-      'text-outline-width': 0.5,
-      'text-outline-color': 'data(color)',
+      'text-valign': 'top',
+      'text-halign': 'left',      
+      'text-wrap': 'wrap',
+      'text-max-width': 10,
+      //'color': 'black',
+      //'color': 'white',
+      //'font-color': 'black',
+      'text-outline-width': 0.3,
+      'text-outline-color': '#ccc',      
+      //'text-outline-color': 'data(color)',
+      //'text-outline-color': 'black',
       'min-zoomed-font-size': 1
     }).selector('$node > node').css({
     	  'shape': 'roundrectangle',
@@ -62,7 +74,8 @@ cy = cytoscape({
           //'content': 'data(label)',
           'target-arrow-shape': 'triangle-backcurve',
           'width': 1,
-          'color': 'white',
+          'line-color': 'data(linecolor)',
+          'target-arrow-color': 'data(linecolor)',
           'text-outline-width': 0.5,
           'font-size': 2,
           'text-outline-color': '#888',
@@ -89,8 +102,12 @@ $(document).ready(function () {
 	cy.on('tap', function(evt){
 		tappedMethod = evt.cyTarget.id();
 	});
+	
 
 });
+
+getProjectLabel();
+getSessionLabel();
 
 }); // on dom ready
 
@@ -101,13 +118,34 @@ function loadElements() {
 	    success: function(elements) { 
 	    	cy.load(JSON.parse(elements), 
 	    	        function(e) {
-	     				applyLayout('dagre');
+	    	        	//applyLayout('dagre');
 	    				loadInterEdges();
 	    			}
 	    	); 
 	    }
  	});
 }
+
+function getSessionLabel() {
+	var dataUrl = "sessions/" + sessionId;
+	$.ajax({
+		url: dataUrl,
+	    success: function(elements) {
+	    	$('#sessionLabel').html('Session ' + sessionId + ': ' +  elements.label);
+	    }
+ 	});
+}
+
+function getProjectLabel() {
+	var dataUrl = "sessions/" + sessionId + "/project";
+	$.ajax({
+		url: dataUrl,
+	    success: function(elements) {
+	    	$('#projectLabel').html('Project ' +  elements.name);
+	    }
+ 	});
+}
+
 
 function loadInterEdges() {
 	var dataUrl = "sessions/interPathEdges?sessionId=" + sessionId;
@@ -312,6 +350,8 @@ function applyLayout(choise) {
 
 </head>
 	<body>
+		<div id="projectLabel"></div>
+		<div id="sessionLabel"></div>
 		<div id="cy"></div>
 	</body>
 </html>
