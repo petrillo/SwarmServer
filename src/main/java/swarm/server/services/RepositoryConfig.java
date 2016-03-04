@@ -10,8 +10,8 @@ import swarm.server.domains.Event;
 import swarm.server.domains.Invocation;
 import swarm.server.domains.Method;
 import swarm.server.domains.Namespace;
-import swarm.server.domains.Project;
 import swarm.server.domains.Session;
+import swarm.server.domains.Task;
 import swarm.server.domains.Type;
 
 @Configuration
@@ -28,7 +28,7 @@ public class RepositoryConfig extends RepositoryRestMvcConfiguration {
         config.exposeIdsFor(Invocation.class);
         config.exposeIdsFor(Method.class);
         config.exposeIdsFor(Namespace.class);
-        config.exposeIdsFor(Project.class);
+        config.exposeIdsFor(Task.class);
         config.exposeIdsFor(Session.class);
         config.exposeIdsFor(Type.class);
     }

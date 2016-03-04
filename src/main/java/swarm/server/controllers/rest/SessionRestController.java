@@ -13,8 +13,8 @@ public class SessionRestController {
 	private SessionService service;
 	
 	@RequestMapping("/sessions/find")
-    public String findSessions(Long projectId, Long developerId) {
-		return service.findSessions(projectId, developerId);
+    public String findSessions(Long taskId, Long developerId) {
+		return service.findSessions(taskId, developerId);
     }	
 	
 	@RequestMapping("/sessions/graph")

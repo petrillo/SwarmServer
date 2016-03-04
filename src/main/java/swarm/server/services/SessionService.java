@@ -32,9 +32,9 @@ public class SessionService {
 	private InvocationRepository  invocationRepository; 
 	
 
-	public String findSessions(Long projectId, Long developerId) {
+	public String findSessions(Long taskId, Long developerId) {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
-		return gson.toJson(repository.findByProjectAndDeveloper(projectId, developerId));
+		return gson.toJson(repository.findByTaskAndDeveloper(taskId, developerId));
 	}
 
 	public String getGraphData(Long sessionId, boolean addType) {

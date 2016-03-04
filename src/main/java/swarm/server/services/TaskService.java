@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
 @Service
-public class TypeService {
+public class TaskService {
 
 	@Autowired
-	private TypeRepository  repository;
+	private TaskRepository  repository; 
 	
-	public String getBySessionId(Long sessionId) {
+	public String findAll() {
 		Gson gson = new Gson();
-		return gson.toJson(repository.findBySessionId(sessionId));
+		return gson.toJson(repository.findAll());
 	}
 }

@@ -12,7 +12,7 @@ import swarm.server.domains.Session;
 @RepositoryRestResource(collectionResourceRel = "sessions", path = "sessions")
 public interface SessionRepository extends PagingAndSortingRepository<Session, Long> {
 
-	@Query("Select s from Session s Where project.id = :projectId and developer.id = :developerId ")
-	List<Session> findByProjectAndDeveloper(@Param("projectId") Long projectId, @Param("developerId") Long developerId);
+	@Query("Select s from Session s Where task.id = :taskId and developer.id = :developerId ")
+	List<Session> findByTaskAndDeveloper(@Param("taskId") Long taskId, @Param("developerId") Long developerId);
 	
 }

@@ -23,13 +23,16 @@ public class Session implements Serializable {
 	private Developer developer;
 	
 	@ManyToOne
-	private Project project;
+	private Task task;
 	
 	String description;	
 
 	String label;	
 	
 	String purpose;
+	
+	String project;
+
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date started;
@@ -53,12 +56,12 @@ public class Session implements Serializable {
 		this.developer = developer;
 	}
 
-	public Project getProject() {
-		return project;
+	public Task getTask() {
+		return task;
 	}
 
-	public void setProject(Project project) {
-		this.project = project;
+	public void setTask(Task project) {
+		this.task = project;
 	}
 
 	public String getDescription() {
@@ -83,6 +86,14 @@ public class Session implements Serializable {
 
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
+	}
+
+	public String getProject() {
+		return project;
+	}
+
+	public void setProject(String project) {
+		this.project = project;
 	}
 
 	public Date getStarted() {

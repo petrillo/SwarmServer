@@ -4,21 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import swarm.server.services.ProjectService;
+import swarm.server.services.TaskService;
 
 @RestController
-public class ProjectRestController {
+public class TaskRestController {
 
 	@Autowired
-	private ProjectService service; 
+	private TaskService service; 
 
-	@RequestMapping("/projects/all")
+	@RequestMapping("/tasks/all")
     public String findAll() {
 		return service.findAll();
-    }	
-	
-	@RequestMapping("/projects/getByDeveloperId")
-    public String getProjects(Long developerId) {
-		return service.getProjects(developerId);
-    }	
+    }
 }
