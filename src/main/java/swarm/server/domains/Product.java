@@ -8,28 +8,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Namespace implements Serializable {
+public class Product implements Serializable {
 
-	private static final long serialVersionUID = 3462732810012847539L;
+	private static final long serialVersionUID = 1537356330345722033L;
 
 	@Id
 	@GeneratedValue
-	private Long id;
-
+	private Long id;	
+	
 	@Column(nullable = false)
 	String name;
-
-	@Column(nullable = false)
-	String fullPath;
 	
 	public Long getId() {
-		return id;
+		return this.id;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}	
-
+	
 	public String getName() {
 		return name;
 	}
@@ -38,11 +31,7 @@ public class Namespace implements Serializable {
 		this.name = name;
 	}
 
-	public String getFullPath() {
-		return fullPath;
-	}
-
-	public void setFullPath(String fullPath) {
-		this.fullPath = fullPath;
+	public String toString() {
+		return id + ": " + name;
 	}
 }

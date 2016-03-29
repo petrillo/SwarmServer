@@ -29,20 +29,26 @@ public class SessionService {
 	private MethodRepository  methodRepository; 
 	
 	@Autowired
-	private InvocationRepository  invocationRepository; 
+	private InvocationRepository  invocationRepository;
 	
-
 	public String findSessions(Long taskId, Long developerId) {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
 		return gson.toJson(repository.findByTaskAndDeveloper(taskId, developerId));
 	}
 
 	public String getGraphData(Long sessionId, boolean addType) {
-		StringBuffer graph = new StringBuffer();
-
 		Session session = repository.findOne(sessionId);
+		return getGraphData(session, addType, true);
+	}
+	
+	
+	public String getGraphData(Session session, boolean addType, boolean closed) {
+		StringBuffer graph = new StringBuffer();
 		
-		graph.append("[");
+		if(closed) { 
+			graph.append("[");
+		}
+
 		if(session != null) {
 			List<Type> types = typeRepository.findBySession(session);
 			for (Type type : types) {
@@ -109,12 +115,15 @@ public class SessionService {
 				}
 			}
 		}
-		
+
+		String output;
 		if(graph.length() > 2) {
-			return graph.substring(0, graph.length() - 1) + "]";
+			output =  graph.substring(0, graph.length() - 1) + (closed ? "]" : "");
 		} else {
-			return graph + "]";
+			output = graph.toString() + (closed ? "]" : "");
 		}
+
+		return output;
 	}
 	
 	

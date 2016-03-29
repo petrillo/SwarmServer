@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Task implements Serializable {
@@ -15,6 +16,9 @@ public class Task implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;	
+	
+	@ManyToOne
+	Product product;
 	
 	String title;
 	
@@ -28,6 +32,14 @@ public class Task implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public String getTitle() {
@@ -53,5 +65,4 @@ public class Task implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}	
-
 }

@@ -16,4 +16,9 @@ public class TaskRestController {
     public String findAll() {
 		return service.findAll();
     }
+	
+	@RequestMapping("/tasks/graph")
+    public String getGraphData(Long taskId) {
+		return service.getGraphData(taskId);
+    }	
 }

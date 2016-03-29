@@ -10,7 +10,9 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Breakpoint implements Serializable {
-	private static final long serialVersionUID = -7145408705221743773L;
+
+
+	private static final long serialVersionUID = -6819150292632153873L;
 
 	@Id
 	@GeneratedValue

@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Event implements Serializable {
+	
 	private static final long serialVersionUID = 4778378924903070737L;
 
 	@Id

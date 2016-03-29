@@ -10,6 +10,7 @@ import javax.persistence.Transient;
 
 @Entity
 public class Invocation implements Serializable {
+	
 	private static final long serialVersionUID = 8724123547818474005L;
 
 	@Id
