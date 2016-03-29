@@ -22,8 +22,6 @@ public class Task implements Serializable {
 	
 	String title;
 	
-	String description;
-	
 	String url;
 
 	public Long getId() {
@@ -48,14 +46,6 @@ public class Task implements Serializable {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getUrl() {
