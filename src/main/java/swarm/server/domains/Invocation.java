@@ -1,7 +1,9 @@
 package swarm.server.domains;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,6 +27,9 @@ public class Invocation implements Serializable {
 
 	@ManyToOne(optional = false)
 	private Session session;
+	
+	@Column(name="CREATION_TS", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
+	private Calendar timestamp;
 	
 	@Transient
 	private boolean isVitual;

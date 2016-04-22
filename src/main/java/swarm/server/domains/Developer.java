@@ -1,6 +1,7 @@
 package swarm.server.domains;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +22,9 @@ public class Developer implements Serializable {
 	String name;
 	
 	String color;
+	
+	@Column(name="CREATION_TS", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
+	private Calendar timestamp;
 
 	@Transient
 	boolean logged;

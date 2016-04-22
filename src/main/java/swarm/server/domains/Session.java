@@ -1,8 +1,10 @@
 package swarm.server.domains;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,8 +34,10 @@ public class Session implements Serializable {
 	String purpose;
 	
 	String project;
-
 	
+	@Column(name="CREATION_TS", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
+	private Calendar timestamp;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date started;
 	
