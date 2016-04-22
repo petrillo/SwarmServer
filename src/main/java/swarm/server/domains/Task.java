@@ -23,6 +23,8 @@ public class Task implements Serializable {
 	String title;
 	
 	String url;
+	
+	String color;
 
 	public Long getId() {
 		return id;
@@ -54,5 +56,13 @@ public class Task implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}	
+	}
+	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 }

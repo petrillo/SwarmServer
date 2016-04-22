@@ -9,7 +9,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import swarm.server.domains.Invocation;
 import swarm.server.domains.Method;
+import swarm.server.domains.Product;
 import swarm.server.domains.Session;
+import swarm.server.domains.Task;
 
 @RepositoryRestResource(collectionResourceRel = "invocations", path = "invocations")
 public interface InvocationRepository extends PagingAndSortingRepository<Invocation, Long> {
@@ -25,6 +27,13 @@ public interface InvocationRepository extends PagingAndSortingRepository<Invocat
 
 	int countBySession(Session session);
 
+	@Query("from Invocation as i where i.session.task = :task order by i.id")
+	List<Invocation> findBySession(@Param("task") Task task);
+	
+	
+	@Query("from Invocation as i Where i.session.task.product = :product")
+	List<Invocation> findByProduct(@Param("product") Product product);
 
+	
 	
 }

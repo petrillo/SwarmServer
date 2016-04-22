@@ -19,6 +19,8 @@ public class Developer implements Serializable {
 	
 	@Column(nullable = false)
 	String name;
+	
+	String color;
 
 	@Transient
 	boolean logged;
@@ -33,6 +35,14 @@ public class Developer implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	public boolean isLogged() {
